@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# -*- encoding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -19,6 +19,5 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from . import project_work
-from . import project_task
-from . import project_task_type
+from . import report
+from . import models
