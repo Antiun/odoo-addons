@@ -1,8 +1,8 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
-#    Copyright (c) 2012 Pedro Manuel Baeza Romero
+#    Copyright (C) 2015 Serv. Tecnol. Avanz. (<http://www.serviciosbaeza.com>)
+#                       Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -19,21 +19,12 @@
 #
 ##############################################################################
 
-{
-    'name': 'Periodical invoicing',
-    'version': '8.0.1.1.0',
-    'category': 'Accounting',
-    'author': 'Serv. Tecnol. Avanzados - Pedro M. Baeza',
-    'website': 'http://www.serviciosbaeza.com',
-    'depends': ['account', 'sale'],
-    'data': [
-        'security/ir.model.access.csv',
-        'wizard/renew_wizard_view.xml',
-        'data/periodical_invoicing_data.xml',
-        'views/periodical_invoicing_view.xml',
-        'views/sale_order_view.xml',
-        'views/res_partner_view.xml',
-    ],
-    'auto_install': False,
-    "installable": True,
-}
+
+def migrate(cr, version):
+    if not version:
+        return
+    # Ensure an unique sequence value
+    cr.execute("""
+        UPDATE account_periodical_invoicing_agreement_line
+        SET sequence = id
+        """)
